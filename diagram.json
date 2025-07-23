@@ -10,13 +10,7 @@
       "left": -100.76,
       "attrs": {}
     },
-    {
-      "type": "wokwi-potentiometer",
-      "id": "pot1",
-      "top": -270.1,
-      "left": -269,
-      "attrs": {}
-    },
+    { "type": "wokwi-potentiometer", "id": "pot1", "top": -270.1, "left": -269, "attrs": {} },
     {
       "type": "wokwi-servo",
       "id": "servo1",
@@ -25,25 +19,56 @@
       "attrs": { "horn": "single" }
     },
     {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": -131.2,
+      "left": -354.4,
+      "attrs": {}
+    },
+    {
       "type": "wokwi-led",
       "id": "led1",
-      "top": -330,
+      "top": -406.8,
       "left": 42.2,
       "attrs": { "color": "green", "label": "Idle" }
     },
     {
       "type": "wokwi-led",
       "id": "led2",
-      "top": -330,
+      "top": -387.6,
       "left": 13.4,
       "attrs": { "color": "yellow", "label": "On" }
     },
     {
       "type": "wokwi-led",
       "id": "led3",
-      "top": -330,
+      "top": -378,
       "left": -15.4,
       "attrs": { "color": "red", "label": "Error" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -302.4,
+      "left": 37.85,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": -302.4,
+      "left": 9.05,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": -302.4,
+      "left": -19.75,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
     }
   ],
   "connections": [
@@ -58,9 +83,16 @@
     [ "esp:GND.2", "led1:C", "black", [ "v0", "h57.6" ] ],
     [ "esp:GND.2", "led2:C", "black", [ "v0", "h28.8" ] ],
     [ "esp:GND.2", "led3:C", "black", [ "v0" ] ],
-    [ "esp:17", "led1:A", "green", [ "h0" ] ],
-    [ "led3:A", "esp:19", "red", [ "v0" ] ],
-    [ "led2:A", "esp:18", "gold", [ "v0" ] ]
+    [ "esp:17", "r1:2", "green", [ "h0" ] ],
+    [ "r1:1", "led1:A", "green", [ "h0" ] ],
+    [ "esp:18", "r2:2", "green", [ "h0" ] ],
+    [ "r2:1", "led2:A", "green", [ "h0" ] ],
+    [ "esp:19", "r3:2", "green", [ "h0" ] ],
+    [ "r3:1", "led3:A", "green", [ "h0" ] ],
+    [ "ldr1:GND", "esp:GND.1", "black", [ "h0" ] ],
+    [ "ldr1:VCC", "esp:5V", "red", [ "h67.2", "v57.6" ] ],
+    [ "ldr1:DO", "ldr1:AO", "blue", [ "h0" ] ],
+    [ "ldr1:AO", "esp:25", "green", [ "h38.4", "v-67.9" ] ]
   ],
   "dependencies": {}
 }
